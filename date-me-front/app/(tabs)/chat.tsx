@@ -11,7 +11,7 @@ import {
   startSignalRConnection,
   sendMessage,
   onReceiveMessage,
-} from "../singalr/singlet";
+} from "../features/chat/services";
 
 export default function ChatScreen() {
   const [messages, setMessages] = useState<{ user: string; message: string }[]>(
