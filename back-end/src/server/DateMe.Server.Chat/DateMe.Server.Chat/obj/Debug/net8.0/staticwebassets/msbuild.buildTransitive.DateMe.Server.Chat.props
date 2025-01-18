@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/DateMe.Server.Chat.props" />
+</Project>

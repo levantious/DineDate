@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "28F52ZwXx/nFx5N1lXTLCmupHC0WQBk30B+EAIvnsjk=",
+  "Source": "DateMe.Server.Chat",
+  "BasePath": "_content/DateMe.Server.Chat",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
