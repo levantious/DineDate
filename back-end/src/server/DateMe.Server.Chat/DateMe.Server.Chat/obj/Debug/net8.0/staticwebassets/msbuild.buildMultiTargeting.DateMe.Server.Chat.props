@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/DateMe.Server.Chat.props" />
-</Project>

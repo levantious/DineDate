@@ -36,3 +36,22 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+
+
+# Ignore DLL files
+*.dll
+
+# Ignore PDB files
+*.pdb
+
+# Ignore cache files
+*.cache
+
+# Ignore source link files
+*.sourcelink.json
+
+# Ignore all files inside obj and bin directories
+**/bin/
+**/obj/
+
