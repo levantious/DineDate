@@ -5,7 +5,7 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { chatData } from "@/data";
 import { Header, ScreenContainer } from "@/components/ui";
-import { Avatar, UserInfo } from "../features/chat/ui";
+import { Avatar, UserInfo } from "../../features/chat/ui";
 
 type RootStackParamList = {
   chats: {
