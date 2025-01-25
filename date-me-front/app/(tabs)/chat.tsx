@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import {
-  startSignalRConnection,
+  startConnection,
   sendMessage,
   onReceiveMessage,
 } from "../../features/chat/services";
@@ -21,15 +21,15 @@ export default function ChatScreen() {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    const setupSignalR = async () => {
-      const connection = await startSignalRConnection();
+    const setup = async () => {
+      const connection = await startConnection();
 
       onReceiveMessage((user, message) => {
         setMessages((prev) => [...prev, { user, message }]);
       });
     };
 
-    setupSignalR();
+    setup();
   }, []);
 
   const handleSend = async () => {

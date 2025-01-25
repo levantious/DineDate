@@ -1,29 +1,27 @@
 // services/signalrService.ts
 import * as SignalR from "@microsoft/signalr";
-
 let connection: SignalR.HubConnection | null = null;
 
 /**
  * Starts a SignalR connection.
  * @returns The SignalR connection instance.
  */
-export const startSignalRConnection =
-  async (): Promise<SignalR.HubConnection> => {
-    connection = new SignalR.HubConnectionBuilder()
-      .withUrl("http://localhost:5211/chat") // Replace with your backend URL
-      .withAutomaticReconnect()
-      .build();
+export const startConnection = async (): Promise<SignalR.HubConnection> => {
+  connection = new SignalR.HubConnectionBuilder()
+    .withUrl("http://localhost:5211/chat") // Replace with your backend URL
+    .withAutomaticReconnect()
+    .build();
 
-    try {
-      await connection.start();
-      console.log("SignalR Connected");
-    } catch (err) {
-      console.error("Error starting SignalR connection:", err);
-      throw err;
-    }
+  try {
+    await connection.start();
+    console.log("SignalR Connected");
+  } catch (err) {
+    console.error("Error starting SignalR connection:", err);
+    throw err;
+  }
 
-    return connection;
-  };
+  return connection;
+};
 
 /**
  * Sends a message to the SignalR server.
@@ -64,7 +62,7 @@ export const onReceiveMessage = (
 /**
  * Stops the SignalR connection.
  */
-export const stopSignalRConnection = async (): Promise<void> => {
+export const stopConnection = async (): Promise<void> => {
   if (connection) {
     try {
       await connection.stop();
