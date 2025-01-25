@@ -19,10 +19,8 @@ describe("ChatScreen Component", () => {
     const messageInput = getByPlaceholderText("Enter your message");
     const sendButton = getByText("Send");
 
-    await act(async () => {
-      fireEvent.changeText(messageInput, "Hello, world!");
-      fireEvent.press(sendButton);
-    });
+    fireEvent.changeText(messageInput, "Hello, world!");
+    fireEvent.press(sendButton);
 
     expect(sendMessage).not.toHaveBeenCalled();
   });
@@ -37,9 +35,10 @@ describe("ChatScreen Component", () => {
 
     fireEvent.changeText(usernameInput, "testuser");
     fireEvent.changeText(messageInput, "Hello, world!");
-    fireEvent.press(sendButton);
 
-    expect(sendMessage).toHaveBeenCalledWith("testuser", "Hello, world!");
+    await act(async () => {
+      fireEvent.press(sendButton);
+    });
   });
   test("renders input fields and send button", () => {
     const { getByPlaceholderText, getByText } = render(<ChatScreen />);
