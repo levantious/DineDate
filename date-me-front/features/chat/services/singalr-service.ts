@@ -2,11 +2,7 @@
 import * as SignalR from "@microsoft/signalr";
 let connection: SignalR.HubConnection | null = null;
 
-/**
- * Starts a SignalR connection.
- * @returns The SignalR connection instance.
- */
-export const startConnection = async (): Promise<SignalR.HubConnection> => {
+export async function startConnection(): Promise<SignalR.HubConnection> {
   connection = new SignalR.HubConnectionBuilder()
     .withUrl("http://localhost:5211/chat") // Replace with your backend URL
     .withAutomaticReconnect()
@@ -21,17 +17,12 @@ export const startConnection = async (): Promise<SignalR.HubConnection> => {
   }
 
   return connection;
-};
+}
 
-/**
- * Sends a message to the SignalR server.
- * @param user The name of the user sending the message.
- * @param message The message content.
- */
-export const sendMessage = async (
+export async function sendMessage(
   user: string,
   message: string
-): Promise<void> => {
+): Promise<void> {
   if (connection) {
     try {
       await connection.invoke("SendMessage", user, message);
@@ -41,15 +32,11 @@ export const sendMessage = async (
   } else {
     console.warn("SignalR connection not established");
   }
-};
+}
 
-/**
- * Registers a callback for receiving messages from the SignalR server.
- * @param callback The function to execute when a message is received.
- */
-export const onReceiveMessage = (
+export function onReceiveMessage(
   callback: (user: string, message: string) => void
-): void => {
+): void {
   if (connection) {
     connection.on("ReceiveMessage", (user: string, message: string) => {
       callback(user, message);
@@ -57,12 +44,9 @@ export const onReceiveMessage = (
   } else {
     console.warn("SignalR connection not established");
   }
-};
+}
 
-/**
- * Stops the SignalR connection.
- */
-export const stopConnection = async (): Promise<void> => {
+export async function stopConnection(): Promise<void> {
   if (connection) {
     try {
       await connection.stop();
@@ -73,4 +57,4 @@ export const stopConnection = async (): Promise<void> => {
   } else {
     console.warn("SignalR connection not established");
   }
-};
+}
