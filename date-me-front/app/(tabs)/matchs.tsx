@@ -29,7 +29,7 @@ type ChatData = {
 };
 const android = Platform.OS === "android";
 
-export default function ChatScreen() {
+export default function UsersMatchScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <SafeAreaView
