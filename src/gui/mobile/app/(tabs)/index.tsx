@@ -12,6 +12,7 @@ import {
 } from "react-native-responsive-screen";
 
 import { homepage } from "@/assets/images";
+import React from "react";
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
