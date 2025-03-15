@@ -10,7 +10,6 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-
 import { homepage } from "@/assets/images";
 import React from "react";
 export default function HomeScreen() {
