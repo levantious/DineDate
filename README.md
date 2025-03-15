@@ -1,6 +1,7 @@
 # PRs & Branches names:
 
 Branches: Feat,Bug,Chore/FE,BE,DO,Te/issue_id/discription-of-the-changes (all lower case)
+
 Example: feat/fe/11/integrate-chat-component
 
 where:
