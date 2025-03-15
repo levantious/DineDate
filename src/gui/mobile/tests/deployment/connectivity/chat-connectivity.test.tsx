@@ -1,4 +1,6 @@
-import { onReceiveMessage, sendMessage, startConnection, stopConnection } from "../services";
+import { onReceiveMessage, sendMessage, startConnection, stopConnection } from "@/features/chat/services";
+
+
 
 jest.setTimeout(10000);
 
