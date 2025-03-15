@@ -13,7 +13,7 @@ where:
 - DO = DevOPS
 - Te = Tests
 
-and similarly, the branch title:
+and similarly, the PR's title:
 
 Feat,Bug,Chore(FE,BE,DO,Te): Discription of the changes [issue_id]
 
