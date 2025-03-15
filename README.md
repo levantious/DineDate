@@ -1,8 +1,24 @@
-# Welcome to your Expo app 👋
+# PRs & Branches names:
+
+Branches: Feat,Bug,Chore/FE,BE,DO,Te/issue_id/discription-of-the-changes (all lower case)
+Example: feat/fe/11/integrate-chat-component
+
+where:
+- Feat = Feautre.
+- Chore = Some entrenal changes.
+- FE, BE = front/back end.
+- DO = DevOPS
+- Te = Tests
+
+and similarly, the branch title:
+Feat,Bug,Chore(FE,BE,DO,Te): Discription of the changes [issue_id]
+
+Example: feat(FE): Integrate chat component [11].
+
+
+## Installation
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
 
 1. Install dependencies
 
