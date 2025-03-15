@@ -19,7 +19,7 @@ Feat,Bug,Chore(FE,BE,DO,Te): Discription of the changes [issue_id]
 
 Example: feat(FE): Integrate chat component [11].
 
-Also to link the issue with your PR, in the PR description, write hash #, then you will get a list of all opened issues, write the issue_id above, and it will get filtered, or just wirte the number after the hash right away.
+Also to link the issue with your PR, in the PR description, write something like "closes" and then hash # symbol, then you will get a list of all opened issues, write the issue_id above, and it will get filtered, or just wirte the number after the hash right away.
 
 
 ## Installation
