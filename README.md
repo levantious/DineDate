@@ -1,6 +1,8 @@
 # PRs & Branches names:
 
-Branches: Feat,Bug,Chore/FE,BE,DO,Te/issue_id/discription-of-the-changes (all lower case)
+Branches Naming: 
+
+Feat,Bug,Chore/FE,BE,DO,Te/issue_id/discription-of-the-changes (all lower case)
 
 Example: feat/fe/11/integrate-chat-component
 
@@ -12,6 +14,7 @@ where:
 - Te = Tests
 
 and similarly, the branch title:
+
 Feat,Bug,Chore(FE,BE,DO,Te): Discription of the changes [issue_id]
 
 Example: feat(FE): Integrate chat component [11].
