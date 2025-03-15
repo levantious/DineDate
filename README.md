@@ -11,7 +11,7 @@ where:
 - Chore = Some entrenal changes.
 - FE, BE = front/back end.
 - DO = DevOPS
-- Te = Tests
+- TE = Tests
 
 and similarly, the PR's title:
 
