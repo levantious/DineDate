@@ -1,8 +1,30 @@
-# Welcome to your Expo app 👋
+# PRs & Branches names:
+
+Branches Naming: 
+
+Feat,Bug,Chore/FE,BE,DO,Te/issue_id/discription-of-the-changes (all lower case)
+
+Example: feat/fe/11/integrate-chat-component
+
+where:
+- Feat = Feautre.
+- Chore = Some entrenal changes.
+- FE, BE = front/back end.
+- DO = DevOPS
+- TE = Tests
+
+and similarly, the PR's title:
+
+Feat,Bug,Chore(FE,BE,DO,Te): Discription of the changes [issue_id]
+
+Example: feat(FE): Integrate chat component [11].
+
+Also to link the issue with your PR, in the PR description, write something like "closes" and then hash # symbol, then you will get a list of all opened issues, write the issue_id above, and it will get filtered, or just wirte the number after the hash right away.
+
+
+## Installation
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
 
 1. Install dependencies
 

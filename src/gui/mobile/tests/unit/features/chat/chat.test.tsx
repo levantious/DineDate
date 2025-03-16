@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
-import { startConnection, sendMessage, onReceiveMessage } from "../services";
+import { startConnection, sendMessage, onReceiveMessage } from "../../../../features/chat/services";
 import ChatScreen from "@/app/(tabs)/chat";
 
 jest.mock("../services", () => ({
