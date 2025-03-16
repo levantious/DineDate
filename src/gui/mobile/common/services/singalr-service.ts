@@ -2,11 +2,13 @@
 import * as SignalR from "@microsoft/signalr";
 import dotenv from "dotenv";
 let connection: SignalR.HubConnection | null = null;
-dotenv.config();
-console.log("SignalR URL:", process.env.REACT_APP_SIGNALR_URL);
+const backendUrl =
+  process.env.REACT_APP_SIGNALR_URL || "http://localhost:5211/chat";
+
 export async function startConnection(): Promise<SignalR.HubConnection> {
+  console.log("SignalR URL:", process.env.REACT_APP_SIGNALR_URL);
   connection = new SignalR.HubConnectionBuilder()
-    .withUrl(process.env.REACT_APP_SIGNALR_URL as string)
+    .withUrl(backendUrl as string)
     .withAutomaticReconnect()
     .build();
 
