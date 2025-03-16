@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
 
+builder.AddServiceDefaults();
 
 builder.Services.AddCors(options =>
 {
@@ -24,5 +25,7 @@ app.UseCors();
 
 app.MapControllers();
 app.MapHub<ChatHub>("/chat");
+
+app.MapDefaultEndpoints();
 
 app.Run();
