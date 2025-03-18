@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DateMe.Server.Aspire.ServiceDefaults\DateMe.Server.Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\aspire\DateMe.Server.Aspire.ServiceDefaults\DateMe.Server.Aspire.ServiceDefaults.csproj" />
   </ItemGroup>
+
+
 
 </Project>
