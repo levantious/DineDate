@@ -1,8 +1,9 @@
 import { onReceiveMessage, sendMessage, startConnection } from '@/common/services';
 import { message } from '../types';
 import React, { useCallback, useReducer } from 'react'
-import { Alert, Linking, Platform, StyleSheet, Text, View } from 'react-native'
+import { Alert, KeyboardAvoidingView, Linking, Platform, Text, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 import {
     GiftedChat,
     IMessage,
@@ -239,11 +240,8 @@ export function ChatContainer() {
     }, [])
 
     const insets = useSafeAreaInsets()
-
-
-
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
+        <SafeAreaView style={{ flex: 2, backgroundColor: '#f5f5f5', marginBottom: 0, }}>
             <View style={{ marginTop: 20, margin: 10, flexDirection: 'row', alignItems: 'center' }}>
                 <MaterialIcons name="arrow-back" size={24} color="black" style={{ marginLeft: 10 }} />
                 <Text style={{ flex: 1, textAlign: 'center' }}>Mia</Text>
@@ -267,10 +265,7 @@ export function ChatContainer() {
                     </Text>
                 </View>
             </View>
-
-
-
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, }}>
                 <GiftedChat
                     messages={state.messages}
                     onSend={onSend}
@@ -284,13 +279,11 @@ export function ChatContainer() {
                     onLongPress={handleLongPress}
                     onQuickReply={onQuickReply}
                     quickReplyStyle={{ borderRadius: 2 }}
-                    quickReplyTextStyle={{
-                        fontWeight: '200',
-                    }}
+                    quickReplyTextStyle={{ fontWeight: '200' }}
                     renderQuickReplySend={renderQuickReplySend}
                     renderSystemMessage={renderSystemMessage}
                     renderSend={renderSend}
-                    keyboardShouldPersistTaps='never'
+                    keyboardShouldPersistTaps="handled"
                     timeTextStyle={{
                         left: { color: 'red' },
                         right: { color: 'yellow' },
@@ -299,10 +292,9 @@ export function ChatContainer() {
                     inverted={Platform.OS !== 'web'}
                     infiniteScroll
                     bottomOffset={insets.bottom}
-
                 />
             </View>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 

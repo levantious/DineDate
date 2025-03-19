@@ -1,14 +1,16 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, SafeAreaView } from "react-native";
 import TabBarBackground from "@/global-components/TabBarBackground";
 import { HapticTab, IconSymbol } from "@/global-components";
 
 export default function TabLayout() {
   return (
+
     <Tabs
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
@@ -65,5 +67,6 @@ export default function TabLayout() {
           ),
         }} />
     </Tabs>
+
   );
 }
