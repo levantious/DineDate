@@ -42,8 +42,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Spin up dockers locally
 
-Go to `src/server/aspire/DateMe.Server.Aspire.AppHost` and run `dotnet run`, this will run aspire, and build/emulate docker containers.
+First install Aspire tools/workload (if < .Net 9 only), and templates, see [.NET Aspire setup and tooling](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&pivots=dotnet-cli.)
 
-It will also print out a link to aspire dashboard with access token.
+On Linux (unlike Win & Mac), .Net can't make its Aspire dev. certificates trusted, so it shall be trusted manually, the easiest way is to use [linux-dev-certs](https://github.com/tmds/linux-dev-certs).
 
-To access dockerized GUI go to `http://localhost:8082` (make sure that the docker container had been built in aspire dashboard, it takes some time very first time only).
+Go to `src/server/aspire/DateMe.Server.Aspire.AppHost` and run `dotnet run`, this will run Aspire, and build/emulate docker containers.
+
+It will also print out a link to Aspire dashboard with access token.
+
+To access dockerized GUI go to `http://localhost:8082` (make sure that the docker container had been built in Aspire dashboard, it takes some time very first time only).
