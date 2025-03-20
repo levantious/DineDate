@@ -1,0 +1,28 @@
+# This is an official react native community docker image, it 
+# enables web interface, as well as connecting to it via 
+# android emulator/physical device (it contains android SDK)
+FROM reactnativecommunity/react-native-android:latest
+
+WORKDIR /app
+
+# Copy package files, and install modules
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Install the required tunnel dependency so that --tunnel works without prompts
+RUN npm install @expo/ngrok@^4.1.0
+
+COPY . .
+
+# expo ports
+EXPOSE 19000
+EXPOSE 19001
+EXPOSE 19002
+
+# react native web ui
+EXPOSE 8081
+
+
+ENV REACT_APP_SIGNALR_URL=http://localhost:5211/chat
+
+CMD ["npx", "expo", "start", "--tunnel"]
