@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{49144C3C-3643-496D-BE6C-75A4300D7B3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{FD6A7622-EB57-4747-90ED-03763BFDFB61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chat", "chat", "{68F5D44A-25F4-4A6C-8708-BF3A95774856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateMe.Server.Chat.Test.Integration.Client.First", "tests\services\chat\DateMe.Server.Chat.Test.Integration.Client.First\DateMe.Server.Chat.Test.Integration.Client.First.csproj", "{75150689-ED71-4F6D-8C71-E5F8AE5ED994}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateMe.Server.Chat.Test.Integration.Client.Second", "tests\services\chat\DateMe.Server.Chat.Test.Integration.Client.Second\DateMe.Server.Chat.Test.Integration.Client.Second.csproj", "{47530438-255B-4B47-9BE9-4389617445E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{F4946C5E-178F-45B9-8E49-3DB23EC1F3B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chat", "chat", "{8D3A4500-7066-46AD-99F4-6769F1F13D9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateMe.Server.Chat", "services\chat\DateMe.Server.Chat\DateMe.Server.Chat.csproj", "{DF04533E-350B-40F8-B6B0-F20D17DBD89A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aspire", "aspire", "{4396A174-8527-400C-807B-EFCD278FF6E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateMe.Server.Aspire.ServiceDefaults", "aspire\DateMe.Server.Aspire.ServiceDefaults\DateMe.Server.Aspire.ServiceDefaults.csproj", "{CC17883C-58FD-4E56-9B25-92D53503A084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateMe.Server.Aspire.AppHost", "aspire\DateMe.Server.Aspire.AppHost\DateMe.Server.Aspire.AppHost.csproj", "{3C03F4B3-A734-44AB-A403-11DF481C8EAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75150689-ED71-4F6D-8C71-E5F8AE5ED994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75150689-ED71-4F6D-8C71-E5F8AE5ED994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75150689-ED71-4F6D-8C71-E5F8AE5ED994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75150689-ED71-4F6D-8C71-E5F8AE5ED994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47530438-255B-4B47-9BE9-4389617445E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47530438-255B-4B47-9BE9-4389617445E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47530438-255B-4B47-9BE9-4389617445E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47530438-255B-4B47-9BE9-4389617445E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF04533E-350B-40F8-B6B0-F20D17DBD89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF04533E-350B-40F8-B6B0-F20D17DBD89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF04533E-350B-40F8-B6B0-F20D17DBD89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF04533E-350B-40F8-B6B0-F20D17DBD89A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC17883C-58FD-4E56-9B25-92D53503A084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC17883C-58FD-4E56-9B25-92D53503A084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC17883C-58FD-4E56-9B25-92D53503A084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC17883C-58FD-4E56-9B25-92D53503A084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C03F4B3-A734-44AB-A403-11DF481C8EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C03F4B3-A734-44AB-A403-11DF481C8EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C03F4B3-A734-44AB-A403-11DF481C8EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C03F4B3-A734-44AB-A403-11DF481C8EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FD6A7622-EB57-4747-90ED-03763BFDFB61} = {49144C3C-3643-496D-BE6C-75A4300D7B3F}
+		{68F5D44A-25F4-4A6C-8708-BF3A95774856} = {FD6A7622-EB57-4747-90ED-03763BFDFB61}
+		{75150689-ED71-4F6D-8C71-E5F8AE5ED994} = {68F5D44A-25F4-4A6C-8708-BF3A95774856}
+		{47530438-255B-4B47-9BE9-4389617445E3} = {68F5D44A-25F4-4A6C-8708-BF3A95774856}
+		{8D3A4500-7066-46AD-99F4-6769F1F13D9B} = {F4946C5E-178F-45B9-8E49-3DB23EC1F3B7}
+		{DF04533E-350B-40F8-B6B0-F20D17DBD89A} = {8D3A4500-7066-46AD-99F4-6769F1F13D9B}
+		{CC17883C-58FD-4E56-9B25-92D53503A084} = {4396A174-8527-400C-807B-EFCD278FF6E4}
+		{3C03F4B3-A734-44AB-A403-11DF481C8EAF} = {4396A174-8527-400C-807B-EFCD278FF6E4}
+	EndGlobalSection
+EndGlobal

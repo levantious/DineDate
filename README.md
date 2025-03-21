@@ -1,28 +1,29 @@
-# PRs & Branches names:
+# Date ME
+## PRs & Branches names:
 
 Branches Naming: 
 
-Feat,Bug,Chore/FE,BE,DO,Te/issue_id/discription-of-the-changes (all lower case)
+Feat,Bug,Chore/FE,BE,DO,Te/issue_id/description-of-the-changes (all lower case)
 
 Example: feat/fe/11/integrate-chat-component
 
 where:
-- Feat = Feautre.
-- Chore = Some entrenal changes.
+- Feat = Feature.
+- Chore = Some internal changes.
 - FE, BE = front/back end.
 - DO = DevOPS
 - TE = Tests
 
 and similarly, the PR's title:
 
-Feat,Bug,Chore(FE,BE,DO,Te): Discription of the changes [issue_id]
+Feat,Bug,Chore(FE,BE,DO,Te): Description of the changes [issue_id]
 
 Example: feat(FE): Integrate chat component [11].
 
-Also to link the issue with your PR, in the PR description, write something like "closes" and then hash # symbol, then you will get a list of all opened issues, write the issue_id above, and it will get filtered, or just wirte the number after the hash right away.
+Also to link the issue with your PR, in the PR description, write something like "closes" and then hash # symbol, then you will get a list of all opened issues, write the issue_id above, and it will get filtered, or just write the number after the hash right away.
 
 
-## Installation
+## Instal GUI locally
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -38,37 +39,15 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Spin up dockers locally
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+First install Aspire tools/workload (if < .Net 9 only), and templates, see [.NET Aspire setup and tooling](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&pivots=dotnet-cli.)
 
-## Get a fresh project
+On Linux (unlike Win & Mac), .Net can't make its Aspire dev. certificates trusted, so it shall be trusted manually, the easiest way is to use [linux-dev-certs](https://github.com/tmds/linux-dev-certs).
 
-When you're ready, run:
+Go to `src/server/aspire/DateMe.Server.Aspire.AppHost` and run `dotnet run`, this will run Aspire, and build/emulate docker containers.
 
-```bash
-npm run reset-project
-```
+It will also print out a link to Aspire dashboard with access token.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-
-# date-me-app
+To access dockerized GUI go to `http://localhost:8082` (make sure that the docker container had been built in Aspire dashboard, it takes some time very first time only).
