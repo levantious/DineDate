@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform, SafeAreaView } from "react-native";
+import { Platform } from "react-native";
 import TabBarBackground from "@/global-components/TabBarBackground";
 import { HapticTab, IconSymbol } from "@/global-components";
 
