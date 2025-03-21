@@ -1,19 +1,6 @@
-// export interface IMessage {
-//   _id: string | number;
-//   text: string;
-//   createdAt: Date | number;
-//   user: User;
-//   image?: string;
-//   video?: string;
-//   audio?: string;
-//   system?: boolean;
-//   sent?: boolean;
-//   received?: boolean;
-//   pending?: boolean;
-//   quickReplies?: QuickReplies;
-// }
+import { QuickReplies } from "react-native-gifted-chat";
 
-export type message = {
+export type Message = {
   _id: number;
   text: string;
   createdAt: Date;
@@ -25,3 +12,20 @@ export type User = {
   name: string;
   avatar: string;
 };
+
+export type SERVICE_METHODS = {};
+
+export interface IMessage {
+  _id: string | number;
+  text: string;
+  createdAt: Date | number;
+  user: User;
+  image?: string;
+  video?: string;
+  audio?: string;
+  system?: boolean;
+  sent?: boolean;
+  received?: boolean;
+  pending?: boolean;
+  quickReplies?: QuickReplies;
+}
