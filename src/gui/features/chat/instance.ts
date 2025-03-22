@@ -1,14 +1,5 @@
-import { SignalRConnection } from "@/common/services/singalr-service";
 import { createRepository } from "./repository";
 import { createChatService } from "./service";
-import { HubConnection } from "@microsoft/signalr";
+import { createConnection } from "../../common/services/singalr-service";
 
-function createChatFeature(SignalRConnection: HubConnection) {
-  const repository = createRepository();
-  const service = createChatService(SignalRConnection);
-  return {
-    service,
-  };
-}
-
-export const chatFeature = createChatFeature(SignalRConnection);
+export const chatFeature = createChatService(createConnection());

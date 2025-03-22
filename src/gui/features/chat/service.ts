@@ -1,19 +1,8 @@
-// import { connection } from "@/common/services";
-
 import { HubConnection } from "@microsoft/signalr";
+import { Repository } from "./repository";
 
 export function createChatService(SignalRConnection: HubConnection) {
-  async function startConnection(): Promise<HubConnection> {
-    if (!SignalRConnection) {
-      throw new Error("SignalR connection is null");
-    }
-
-    // Check the connection state before starting
-    if (SignalRConnection.state === "Connected") {
-      console.log("SignalR is already connected.");
-      return SignalRConnection; // Return the existing connection if it's already connected
-    }
-
+  async function startConnection(): Promise<void> {
     try {
       await SignalRConnection.start();
       console.log("SignalR Connected");
@@ -21,7 +10,6 @@ export function createChatService(SignalRConnection: HubConnection) {
       console.error("Error starting SignalR connection:", err);
       throw err;
     }
-    return SignalRConnection;
   }
   async function stopConnection(): Promise<void> {
     try {
