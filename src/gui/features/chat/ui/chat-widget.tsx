@@ -14,9 +14,8 @@ import earlierMessages from '@/fake-data/earlierMessages'
 import messagesData from '@/fake-data/messages'
 import * as Clipboard from 'expo-clipboard'
 import { Message } from '../types';
-import { ChatHeader } from '.'
-import { chatFeature } from '..'
-
+import { ChatHeader } from './chat-header'
+import { chatFeature } from '../instance'
 
 
 
@@ -86,34 +85,27 @@ function reducer(state: IState, action: StateAction) {
     }
 }
 
-export function ChatContainer() {
+export function ChatWidget() {
+
     useEffect(() => {
-        chatFeature.service.startConnection();
-        chatFeature.service.onReceiveMessage((user, message) => {
+        chatFeature.startConnection();
+        chatFeature.onReceiveMessage((user, message) => {
             console.log("received message");
-            // const receivedMessage = {
-            //     _id: Math.random().toString(36).substring(7),
-            //     text: message,
-            //     createdAt: new Date(),
-            //     user: {},
-            // };
+            const receivedMessage = {
+                _id: Math.random().toString(36).substring(7),
+                text: message,
+                createdAt: new Date(),
+                user: {},
+            };
             // dispatch({
             //     type: ActionKind.RECEIVE_MESSAGE,
             //     payload: [receivedMessage, ...state.messages],
             // });
         });
-
         return () => {
-            chatFeature.service.stopConnection();
+            chatFeature.stopConnection();
         };
     }, []);
-
-
-
-
-
-
-
 
     const [state, dispatch] = useReducer(reducer, {
         messages: messagesData,
@@ -122,6 +114,9 @@ export function ChatContainer() {
         isLoadingEarlier: false,
         isTyping: false,
     })
+
+
+    //-=-=-=-=-=-=-=-=-=-=-=
     const onSend = useCallback(
         async (messages: any[]) => {
             if (messages.length > 0) {
@@ -139,7 +134,7 @@ export function ChatContainer() {
                 // Send the message using SignalR
                 try {
                     console.log(message)
-                    await chatFeature.service.sendMessage(message.user.name, message.text);
+                    await chatFeature.sendMessage(message.user.name, message.text);
                 } catch (error) {
                     console.error("Failed to send message:", error);
                 }
