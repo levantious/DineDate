@@ -88,8 +88,8 @@ function reducer(state: IState, action: StateAction) {
 export function ChatWidget() {
 
     useEffect(() => {
-        chatFeature.startConnection();
-        chatFeature.onReceiveMessage((user, message) => {
+        chatFeature.service.startConnection();
+        chatFeature.service.onReceiveMessage((user, message) => {
             console.log("received message");
             const receivedMessage = {
                 _id: Math.random().toString(36).substring(7),
@@ -103,7 +103,7 @@ export function ChatWidget() {
             // });
         });
         return () => {
-            chatFeature.stopConnection();
+            chatFeature.service.stopConnection();
         };
     }, []);
 
@@ -134,7 +134,7 @@ export function ChatWidget() {
                 // Send the message using SignalR
                 try {
                     console.log(message)
-                    await chatFeature.sendMessage(message.user.name, message.text);
+                    await chatFeature.service.sendMessage(message.user.name, message.text);
                 } catch (error) {
                     console.error("Failed to send message:", error);
                 }

@@ -13,8 +13,6 @@ export type User = {
   avatar: string;
 };
 
-export type SERVICE_METHODS = {};
-
 export interface IMessage {
   _id: string | number;
   text: string;
