@@ -3,7 +3,6 @@ import {
   LogLevel,
   HubConnection,
 } from "@microsoft/signalr";
-import * as SignalR from "@microsoft/signalr";
 
 export function createConnection() {
   let connection: HubConnection | null = null;
