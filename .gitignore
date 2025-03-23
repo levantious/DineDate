@@ -66,4 +66,5 @@ app-example
 
 expo-env.d.ts
 
-# @end expo-cli
+# rider files
+src/server/.idea

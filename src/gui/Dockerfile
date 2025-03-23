@@ -23,6 +23,6 @@ EXPOSE 19002
 EXPOSE 8081
 
 
-ENV EXPO_PUBLIC_HUB_URL=http://localhost:5211/chat
+ENV EXPO_PUBLIC_HUB_URL=${ASPNETCORE_URLS}/chat
 
 CMD ["npx", "expo", "start", "--tunnel"]
