@@ -6,9 +6,11 @@ import { HapticTab, IconSymbol } from "@/global-components";
 
 export default function TabLayout() {
   return (
+
     <Tabs
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
@@ -65,5 +67,6 @@ export default function TabLayout() {
           ),
         }} />
     </Tabs>
+
   );
 }

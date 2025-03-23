@@ -4,8 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { chatData } from "@/fake-data";
-import { Header, ScreenContainer } from "@/global-components";
-import { Avatar, UserInfo } from "../../features/chat/ui";
+import { Avatar, Header, ScreenContainer, UserInfo } from "@/global-components";
 import { Ionicons } from "@expo/vector-icons";
 
 type RootStackParamList = {

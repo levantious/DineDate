@@ -1,13 +1,10 @@
-import { onReceiveMessage, sendMessage, startConnection } from '@/common/services';
-import { message } from '../types';
-import React, { useCallback, useReducer } from 'react'
-import { Alert, Linking, Platform, StyleSheet, Text, View } from 'react-native'
+// import { onReceiveMessage, sendMessage, startConnection } from '@/common/services';
+import React, { useCallback, useEffect, useReducer } from 'react'
+import { Alert, Linking, Platform, Text, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import {
     GiftedChat,
     IMessage,
-    InputToolbar,
-    InputToolbarProps,
     Send,
     SendProps,
     SystemMessage,
@@ -16,6 +13,10 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import earlierMessages from '@/fake-data/earlierMessages'
 import messagesData from '@/fake-data/messages'
 import * as Clipboard from 'expo-clipboard'
+import { Message } from '../types';
+import { ChatHeader } from './chat-header'
+import { chatFeature } from '../instance'
+
 
 
 const user = {
@@ -23,11 +24,6 @@ const user = {
     name: 'Developer',
 }
 
-const otherUser = {
-    _id: 2,
-    name: 'React Native',
-    avatar: 'https://facebook.github.io/react/img/logo_og.png',
-}
 
 interface IState {
     messages: any[]
@@ -36,15 +32,14 @@ interface IState {
     isLoadingEarlier?: boolean
     isTyping: boolean
 }
-
 enum ActionKind {
     SEND_MESSAGE = 'SEND_MESSAGE',
+    RECEIVE_MESSAGE = 'RECEIVE_MESSAGE',
     LOAD_EARLIER_MESSAGES = 'LOAD_EARLIER_MESSAGES',
     LOAD_EARLIER_START = 'LOAD_EARLIER_START',
     SET_IS_TYPING = 'SET_IS_TYPING',
     // LOAD_EARLIER_END = 'LOAD_EARLIER_END',
 }
-
 // An interface for our actions
 interface StateAction {
     type: ActionKind
@@ -54,6 +49,13 @@ interface StateAction {
 function reducer(state: IState, action: StateAction) {
     switch (action.type) {
         case ActionKind.SEND_MESSAGE: {
+            return {
+                ...state,
+                step: state.step + 1,
+                messages: action.payload,
+            }
+        }
+        case ActionKind.RECEIVE_MESSAGE: {
             return {
                 ...state,
                 step: state.step + 1,
@@ -83,7 +85,28 @@ function reducer(state: IState, action: StateAction) {
     }
 }
 
-export function ChatContainer() {
+export function ChatWidget() {
+
+    useEffect(() => {
+        chatFeature.service.startConnection();
+        chatFeature.service.onReceiveMessage((user, message) => {
+            console.log("received message");
+            const receivedMessage = {
+                _id: Math.random().toString(36).substring(7),
+                text: message,
+                createdAt: new Date(),
+                user: {},
+            };
+            // dispatch({
+            //     type: ActionKind.RECEIVE_MESSAGE,
+            //     payload: [receivedMessage, ...state.messages],
+            // });
+        });
+        return () => {
+            chatFeature.service.stopConnection();
+        };
+    }, []);
+
     const [state, dispatch] = useReducer(reducer, {
         messages: messagesData,
         step: 0,
@@ -92,18 +115,33 @@ export function ChatContainer() {
         isTyping: false,
     })
 
+
+    //-=-=-=-=-=-=-=-=-=-=-=
     const onSend = useCallback(
-        (messages: any[]) => {
-            const sentMessages = [{ ...messages[0], sent: true, received: true }]
-            const newMessages = GiftedChat.append(
-                state.messages,
-                sentMessages,
-                Platform.OS !== 'web'
-            )
-            dispatch({ type: ActionKind.SEND_MESSAGE, payload: newMessages })
+        async (messages: any[]) => {
+            if (messages.length > 0) {
+                const message = messages[0];
+                // Append the message locally
+                const sentMessages = [{ ...message, sent: true, received: true }];
+                const newMessages = GiftedChat.append(
+                    state.messages,
+                    sentMessages,
+                    Platform.OS !== "web"
+                );
+
+                dispatch({ type: ActionKind.SEND_MESSAGE, payload: newMessages });
+
+                // Send the message using SignalR
+                try {
+                    console.log(message)
+                    await chatFeature.service.sendMessage(message.user.name, message.text);
+                } catch (error) {
+                    console.error("Failed to send message:", error);
+                }
+            }
         },
         [dispatch, state.messages]
-    )
+    );
 
     const onLoadEarlier = useCallback(() => {
         dispatch({ type: ActionKind.LOAD_EARLIER_START })
@@ -239,38 +277,10 @@ export function ChatContainer() {
     }, [])
 
     const insets = useSafeAreaInsets()
-
-
-
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
-            <View style={{ marginTop: 20, margin: 10, flexDirection: 'row', alignItems: 'center' }}>
-                <MaterialIcons name="arrow-back" size={24} color="black" style={{ marginLeft: 10 }} />
-                <Text style={{ flex: 1, textAlign: 'center' }}>Mia</Text>
-                <MaterialIcons name="more-vert" size={24} color="black" style={{ marginRight: 10 }} />
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10 }}>
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text
-                        style={{ textAlign: 'center', color: 'black', borderBottomWidth: 2, borderBottomColor: 'black' }}
-                        onPress={() => Linking.openURL('http://example.com/chat')}
-                    >
-                        Chat
-                    </Text>
-                </View>
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text
-                        style={{ textAlign: 'center', color: 'black', borderBottomWidth: 2, borderBottomColor: 'black' }}
-                        onPress={() => Linking.openURL('http://example.com/chat')}
-                    >
-                        Profile
-                    </Text>
-                </View>
-            </View>
-
-
-
-            <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 2, backgroundColor: '#f5f5f5', marginBottom: 0, }}>
+            <ChatHeader />
+            <View style={{ flex: 1, }}>
                 <GiftedChat
                     messages={state.messages}
                     onSend={onSend}
@@ -284,13 +294,11 @@ export function ChatContainer() {
                     onLongPress={handleLongPress}
                     onQuickReply={onQuickReply}
                     quickReplyStyle={{ borderRadius: 2 }}
-                    quickReplyTextStyle={{
-                        fontWeight: '200',
-                    }}
+                    quickReplyTextStyle={{ fontWeight: '200' }}
                     renderQuickReplySend={renderQuickReplySend}
                     renderSystemMessage={renderSystemMessage}
                     renderSend={renderSend}
-                    keyboardShouldPersistTaps='never'
+                    keyboardShouldPersistTaps="handled"
                     timeTextStyle={{
                         left: { color: 'red' },
                         right: { color: 'yellow' },
@@ -299,10 +307,9 @@ export function ChatContainer() {
                     inverted={Platform.OS !== 'web'}
                     infiniteScroll
                     bottomOffset={insets.bottom}
-
                 />
             </View>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 

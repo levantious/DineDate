@@ -1,2 +1,1 @@
-export * from "./avatar";
-export * from "./user-info";
+export * from "./chat-widget";
