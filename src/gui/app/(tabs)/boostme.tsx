@@ -40,11 +40,11 @@ export default function Boostme() {
         },
       ]}
     >
-      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: 16 }}>
+      <View style={styles.container}>
         <Header title="Boost" />
-        <TouchableOpacity style={{ flexDirection: "row", alignItems: "center", marginLeft: 'auto' }}>
+        <TouchableOpacity style={styles.rosesContainer}>
           <Ionicons name="rose" size={24} color="#FFFFFF" />
-          <Text style={{ color: "#FFFFFF", marginRight: 8 }}>Roses (1)</Text>
+          <Text style={styles.rosesText}>Roses (1)</Text>
         </TouchableOpacity>
       </View>
 
@@ -80,9 +80,24 @@ export default function Boostme() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+  },
+  rosesContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 'auto',
+  },
+  rosesText: {
+    color: "#FFFFFF",
+    marginRight: 8,
+  },
   safeArea: {
     flex: 1,
-    backgroundColor: "#000", // Rose color
+    backgroundColor: "#000",
   },
   chatItem: {
     width: "100%",
@@ -90,6 +105,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 0.5,
-    borderBottomColor: "#FF007F", // Rose color
-  },
-});
+    borderBottomColor: "#FF007F",
+  });
