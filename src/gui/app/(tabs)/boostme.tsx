@@ -105,5 +105,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 0.5,
-    borderBottomColor: "#FF007F",
-  });
+    borderBottomColor: "#FF007F"
+  },
+});
