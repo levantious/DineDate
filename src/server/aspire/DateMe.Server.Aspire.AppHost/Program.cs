@@ -11,13 +11,12 @@ var envVars = DotEnv
 var builder = DistributedApplication.CreateBuilder(args);
 
 var server = builder
-    .AddProject<Projects.DateMe_Server_Chat>("server")
-    .WithEnvironment("ASPNETCORE_URLS", envVars["ASPNETCORE_URLS"]);
+    .AddProject<Projects.DateMe_Server_Chat>("server");
 
 var client = builder
         .AddDockerfile("client", "../../../gui", "Dockerfile")
         .WithHttpEndpoint(port: 8082, targetPort:8081)
-        .WithEnvironment()
+        .WithEnvironment("EXPO_PUBLIC_HUB_URL", $"{envVars["ASPNETCORE_URLS"]}/chat")
         .WithReference(server)
         .WaitFor(server);
 
