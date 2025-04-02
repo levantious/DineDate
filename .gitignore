@@ -68,3 +68,4 @@ expo-env.d.ts
 
 # rider files
 src/server/.idea
+src/server/DateMe.Server.sln.DotSettings.user
