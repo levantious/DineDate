@@ -14,11 +14,14 @@
           memory: 200M
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASP_RUN_ENVIRONMENT}
-      - ASPNETCORE_URLS=${SERVER_CHAT_ASP_NETWORK_INTERFACE}:8080
+      - ASPNETCORE_URLS=${SERVER_CHAT_ASP_NETWORK_INTERFACE}:${SERVER_CHAT_PORT}
+      - WEB_GUI_PORT=${WEB_GUI_PORT}
+      - WEB_UI_ORIGIN_URL=${WEB_UI_ORIGIN_URL}
     ports:
-      - "${SERVER_CHAT_NETWORK_INTERFACE}:${SERVER_CHAT_PORT}:8080"
+      - "${SERVER_CHAT_NETWORK_INTERFACE}:${SERVER_CHAT_PORT}:${SERVER_CHAT_PORT}"
     networks:
       - dateme-network
+    restart: always
 
   dateme-gui:
     container_name: dateme-gui
@@ -26,7 +29,7 @@
     depends_on:
       - dateme-server-chat
     ports:
-      - "${GUI_PORT}:8081"
+      - "${WEB_GUI_PORT}:8081"
     networks:
       - dateme-network
     build:
@@ -37,7 +40,8 @@
         limits:
           memory: 500M
     environment:
-      -  EXPO_PUBLIC_HUB_URL=http://dateme.server.chat:${SERVER_CHAT_PORT}
+      -  EXPO_PUBLIC_HUB_URL=http://localhost:${SERVER_CHAT_PORT}/chat
+    restart: always
 
 networks:
   dateme-network:

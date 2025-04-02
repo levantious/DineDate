@@ -5,7 +5,7 @@ using System;
 Console.Title = "Client 1";
 
 var connection = new HubConnectionBuilder()
-    .WithUrl("http://localhost:5211/chat?clientname=Client1")
+    .WithUrl("http://localhost:7001/chat?clientname=Client1")
     .WithAutomaticReconnect()
     .WithKeepAliveInterval(TimeSpan.FromMinutes(5))
     .Build();
