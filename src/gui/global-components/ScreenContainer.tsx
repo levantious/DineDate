@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode } from "react";
 import { View, StyleSheet } from "react-native";
 export function ScreenContainer({ children }: { children: ReactNode }) {
