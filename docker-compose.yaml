@@ -1,0 +1,48 @@
+﻿services:
+  dateme-server-chat:
+    container_name: dateme-server.chat
+    image: dateme-server.chat
+    build:
+      context: .
+      dockerfile: src/server/services/chat/DateMe.Server.Chat/Dockerfile
+      args:
+        BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
+        APP_VERSION: ${APP_VERSION}
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASP_RUN_ENVIRONMENT}
+      - ASPNETCORE_URLS=${SERVER_CHAT_ASP_NETWORK_INTERFACE}:${SERVER_CHAT_PORT}
+      - WEB_GUI_PORT=${WEB_GUI_PORT}
+      - WEB_UI_ORIGIN_URL=${WEB_UI_ORIGIN_URL}
+    ports:
+      - "${SERVER_CHAT_NETWORK_INTERFACE}:${SERVER_CHAT_PORT}:${SERVER_CHAT_PORT}"
+    networks:
+      - dateme-network
+    restart: always
+
+  dateme-gui:
+    container_name: dateme-gui
+    image: dateme-server.gui
+    depends_on:
+      - dateme-server-chat
+    ports:
+      - "${WEB_GUI_PORT}:8081"
+    networks:
+      - dateme-network
+    build:
+      context: .
+      dockerfile: src/gui/Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    environment:
+      -  EXPO_PUBLIC_HUB_URL=http://localhost:${SERVER_CHAT_PORT}/chat
+    restart: always
+
+networks:
+  dateme-network:
+    driver: bridge

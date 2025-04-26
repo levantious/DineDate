@@ -33,6 +33,10 @@ namespace DateMe.Server.Chat
 
         public override async Task OnConnectedAsync()
         {
+            var httpContext = Context.GetHttpContext();
+            string listeningUrl = $"{httpContext.Request.Scheme}://{httpContext.Request.Host}";
+            Console.WriteLine($"Client connected via: {listeningUrl}");
+
             var clientName = Context.GetHttpContext()?.Request.Query["clientname"];
 
             if (!string.IsNullOrEmpty(clientName))
