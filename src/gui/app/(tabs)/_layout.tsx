@@ -6,7 +6,6 @@ import { HapticTab, IconSymbol } from "@/global-components";
 
 export default function TabLayout() {
   return (
-
     <Tabs
       screenOptions={{
         headerShown: false,
@@ -39,8 +38,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
-
       <Tabs.Screen
         name="chat"
         options={{
@@ -67,6 +64,5 @@ export default function TabLayout() {
           ),
         }} />
     </Tabs>
-
   );
 }

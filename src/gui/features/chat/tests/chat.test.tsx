@@ -1,19 +1,10 @@
 import React from "react";
 import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
-import { startConnection, sendMessage, onReceiveMessage } from "../../../../features/chat/services";
 import ChatScreen from "@/app/(tabs)/chat";
+import { chatFeature } from "@/features/chat";
 
-jest.mock("../services", () => ({
-  startConnection: jest.fn(),
-  sendMessage: jest.fn(),
-  onReceiveMessage: jest.fn(),
-}));
 
 describe("ChatScreen Component", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test("does not send message if message input is empty | 0 case", async () => {
     const { getByPlaceholderText, getByText } = render(<ChatScreen />);
     const messageInput = getByPlaceholderText("Enter your message");
@@ -22,11 +13,11 @@ describe("ChatScreen Component", () => {
     fireEvent.changeText(messageInput, "Hello, world!");
     fireEvent.press(sendButton);
 
-    expect(sendMessage).not.toHaveBeenCalled();
+    expect(chatFeature.service.sendMessage).not.toHaveBeenCalled();
   });
 
   test("handles user input and sends message | 1 case", async () => {
-    (startConnection as jest.Mock).mockResolvedValue({});
+    (chatFeature.service.startConnection as jest.Mock).mockResolvedValue({});
     const { getByPlaceholderText, getByText } = render(<ChatScreen />);
 
     const usernameInput = getByPlaceholderText("Enter your username");
@@ -52,8 +43,8 @@ describe("ChatScreen Component", () => {
 
   test("receives and displays messages", async () => {
     const mockMessage = { user: "testuser", message: "Hello, world!" };
-    (startConnection as jest.Mock).mockResolvedValue({});
-    (onReceiveMessage as jest.Mock).mockImplementation((callback) => {
+    (chatFeature.service.startConnection as jest.Mock).mockResolvedValue({});
+    (chatFeature.service.onReceiveMessage as jest.Mock).mockImplementation((callback) => {
       callback(mockMessage.user, mockMessage.message);
     });
 
